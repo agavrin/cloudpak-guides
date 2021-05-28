@@ -118,11 +118,11 @@ ibmcloud sl file volume-detail $volume
 
 if [[ $? -eq 0 ]]; then
 capval=`ibmcloud sl file volume-detail $volume | awk '$1=="Capacity" {print $3}'`
-  if [[ $capval < 200 ]]; then
-     ibmcloud sl file volume-modify $volume --new-size 200 --force
+  if [[ $capval < 300 ]]; then
+     ibmcloud sl file volume-modify $volume --new-size 300 --force
      for i in {1..10}; do
        cap=`ibmcloud sl file volume-detail $volume | awk '$1=="Capacity" {print $3}'`
-       if [[ $cap == 200 ]]; then
+       if [[ $cap == 300 ]]; then
          echo "Image registry Volume is modified"
          break
        else
