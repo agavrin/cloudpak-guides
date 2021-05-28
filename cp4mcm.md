@@ -27,6 +27,8 @@ export LOGDIR=/home/ag/cp4mcm-installer/
 # fix the helm command issue
 # helm install $MINIO_CHART_NAME minio/minio \
 sed -i -e 's/stable/minio/g' rhacm/2-minio.sh
+# Logs folder location fix
+sed -i -e 's/PWD/pwd/g' setup_env.sh
 
 oc login --token=sha256~y5qLki9B6ZN....6BtAdKMPN_Z-2i7ZZi0 --server=https://c100-e.eu-de.containers.cloud.ibm.com:30413
 
