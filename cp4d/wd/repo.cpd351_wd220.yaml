@@ -1,0 +1,38 @@
+registry:
+- url: cp.icr.io
+  username: ##CPD_USER##
+  apikey: ##CPD_KEY##
+  namespace: cp/cpd
+  name: base-registry
+# RMQ/Elasticsearch/Gateway/Minio Operator
+- url: cp.icr.io
+  username: ##CPD_USER##
+  apikey: ##CPD_KEY##
+  namespace: cp
+  name: prod-entitled-registry
+# Etcd Operator
+- url: cp.icr.io
+  username: ##CPD_USER##
+  apikey: ##CPD_KEY##
+  namespace: cp
+  name: entitled-registry
+# EDB Operator
+- url: cp.icr.io
+  username: ##CPD_USER##
+  apikey: ##CPD_KEY##
+  namespace: cp/cpd
+  name: databases-registry
+# ModelTrain Classic
+- url: cp.icr.io
+  username: ##CPD_USER##
+  apikey: ##CPD_KEY##
+  namespace: cp/modeltrain
+  name: modeltrain-classic-registry
+# Discovery
+- url: cp.icr.io
+  username: ##CPD_USER##
+  apikey: ##CPD_KEY##
+  namespace: cp/watson-discovery
+  name: watson-discovery-registry
+fileservers:
+- url: https://raw.github.com/IBM/cloud-pak/master/repo/cpd/3.5

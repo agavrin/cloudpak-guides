@@ -1,0 +1,3 @@
+wdRelease:
+  deploymentType: Production
+  enableContentIntelligence: false
