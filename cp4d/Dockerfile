@@ -51,3 +51,5 @@ WORKDIR /root/install
 # Clean up
 ############
 RUN rm -rf /var/cache/apk/* && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+ENTRYPOINT ["/sbin/init"]
