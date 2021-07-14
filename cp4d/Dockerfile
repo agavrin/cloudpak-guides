@@ -7,15 +7,25 @@ CMD ["/sbin/my_init"]
 # Download and install packages
 ################################
 
+###################################
+# Install necessary packages
+###################################
 RUN install_clean git wget unzip jq nano make
+
+###################################
+# Dir for mounting template files
+###################################
+RUN mkdir -p $HOME/install
 
 WORKDIR /tmp
 
-# Download script into /root/install/discovery-data/2.2.0/
+###################################
+# Download backup script into /root/install/discovery-data/ from https://github.com/watson-developer-cloud/doc-tutorial-downloads
+###################################
 RUN git clone https://github.com/watson-developer-cloud/doc-tutorial-downloads.git \
 && cd doc-tutorial-downloads \
 && tar -cvzf wd-backup.tar.gz discovery-data \
-&& mv wd-backup.tar.gz /root/install \
+&& mv wd-backup.tar.gz /root/install/ \
 && cd /root/install/ \
 && tar -xvzf wd-backup.tar.gz \
 && rm -fr wd-backup.tar.gz \
@@ -53,10 +63,6 @@ RUN wget --no-verbose -O ibmcloud-installer.tgz https://clis.cloud.ibm.com/downl
  && Bluemix_CLI/install \
  && echo 'alias ic=ibmcloud' >> $HOME/.profile
 
-###################################
-# Dir for mounting template files
-###################################
-RUN mkdir -p $HOME/install
 
 WORKDIR /root/install
 

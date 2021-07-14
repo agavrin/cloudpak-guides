@@ -1,2 +1,5 @@
 _customization.sh
 cp4d/_logs/*
+cp4d/cpd-cli-workspace
+cp4d/wd/backup/
+discovery-data/
