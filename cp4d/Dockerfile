@@ -1,8 +1,5 @@
 FROM alpine:3.14
 
-# Use baseimage-docker's init system.
-CMD ["/sbin/my_init"]
-
 ###################################
 # Install necessary packages
 ###################################
