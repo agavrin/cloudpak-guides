@@ -53,4 +53,4 @@ WORKDIR /root/install
 ############
 # Clean up
 ############
-RUN apk cache clean && rm -rf /var/cache/apk/* && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN rm -rf /var/cache/apk/* && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
