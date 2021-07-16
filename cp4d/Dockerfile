@@ -1,14 +1,15 @@
-FROM alpine:3.14
+#FROM alpine:3.14
+FROM frolvlad/alpine-glibc
 
 ###################################
 # Install necessary packages
 ###################################
-RUN apk add --no-cache git wget	unzip	nano make
+RUN apk add --no-cache bash git ncurses wget unzip nano make
 
 ###################################
 # Dir for mounting template files
 ###################################
-RUN mkdir -p $HOME/install
+RUN mkdir -p $HOME/install && mkdir -p $HOME/wd
 
 WORKDIR /tmp
 
@@ -18,8 +19,8 @@ WORKDIR /tmp
 RUN git clone https://github.com/watson-developer-cloud/doc-tutorial-downloads.git \
  && cd doc-tutorial-downloads \
  && tar -cvzf wd-backup.tar.gz discovery-data \
- && mv wd-backup.tar.gz /root/install/ \
- && cd /root/install/ \
+ && mv wd-backup.tar.gz /root/wd/ \
+ && cd /root/wd/ \
  && tar -xvzf wd-backup.tar.gz \
  && rm -fr wd-backup.tar.gz \
  && cd /tmp \
@@ -42,14 +43,21 @@ RUN wget --no-verbose https://mirror.openshift.com/pub/openshift-v4/clients/ocp/
  && tar -xzf openshift-client-linux.tar.gz \
  && mv oc /usr/bin/ \
  && mv kubectl /usr/bin/ \
- && rm -fr openshift-client-linux.tar.gz
-
+ && rm -fr openshift-client-linux.tar.gz \
+ && /usr/bin/oc \
+ && /usr/bin/kubectl
 
 WORKDIR /root/install
 
 ############
 # Clean up
 ############
-RUN rm -rf /var/cache/apk/* && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN rm -rf /var/cache/apk/* && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+ && ln -sf /dev/null /dev/tty1 \
+ && ln -sf /dev/null /dev/tty2 \
+ && ln -sf /dev/null /dev/tty3 \
+ && ln -sf /dev/null /dev/tty4 \
+ && ln -sf /dev/null /dev/tty5 \
+ && ln -sf /dev/null /dev/tty6
 
 ENTRYPOINT ["/sbin/init"]
