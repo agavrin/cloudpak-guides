@@ -3,3 +3,4 @@ cp4d/_logs/*
 cp4d/cpd-cli-workspace
 cp4d/wd/backup/
 discovery-data/
+cp4d/wd_backup
